@@ -1,0 +1,29 @@
+ <?php
+      $id=postIndex("id");
+      if(isset($id)){
+      ?>
+     <h2>Bình Luận</h2>
+               <form action='' method='POST'>
+        <input type='text' name='name' placeholder="Enter Your Name ..." class="text" required>
+        <textarea id="comment" name='comment' placeholder="Enter Your Comment" class="text" required></textarea>
+        <button class="button" type="submit" name="submit">Comment</button>
+		</form>
+      <div class="prev-comments">
+         <?php
+            $sql = "SELECT * FROM comments";
+            $result = mysqli_query($conn,$sql);
+            if(mysqli_num_rows($result)>0){
+               while ($row =mysqli_fetch_assoc($result)){
+         ?>
+         <div class="single-item">
+         <h4><?php echo $row['name']; ?></h4>
+         <p><?php echo $row['comment']; ?></p>
+     </div>
+     <?php
+            }
+         }
+         ?>
+
+									 <?php   
+     }
+     ?>
